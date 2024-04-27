@@ -27,9 +27,11 @@ namespace Bancousmporres.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string? searchString)
         {
-            return View();
+            var productos = from o in _context.DataCuenta select o;
+            return View(productos.ToList());
+
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
